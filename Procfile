@@ -1,0 +1,1 @@
+web: java -jar target/geofinder-0.1-SNAPSHOT.jar
