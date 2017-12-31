@@ -27,8 +27,7 @@
                     </listbox>
                     <groupbox visible="@bind(deviceVm.isHistoryVisible)" closable="false">
                         <caption onClick="@command('closeHistory')">
-                            <label value="History"/>
-                            <label value="[X]"/>
+                            <label value="@bind(deviceVm.historyTitle)"/>
                         </caption>
                         <listbox model="@bind(deviceVm.historyList)" emptyMessage="No history found">
                             <listhead>

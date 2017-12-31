@@ -67,13 +67,21 @@ public class DeviceListViewModel {
         return isHistoryVisible;
     }
 
+    public String getHistoryTitle() {
+        String title = "[X] History";
+        if (selectedDevice != null) {
+            title = title + " of " + selectedDevice.getName();
+        }
+        return title;
+    }
+
     /**
      * Show history given a device
      *
      * @param device
      */
     @Command
-    @NotifyChange({"isHistoryVisible", "historyList"})
+    @NotifyChange({"isHistoryVisible", "historyTitle", "historyList"})
     public void showHistory(@BindingParam("device") Device device) {
         selectedDevice = device;
         isHistoryVisible = true;
