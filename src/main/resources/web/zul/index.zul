@@ -1,0 +1,18 @@
+<zk>
+    <hbox align="center" pack="center" hflex="1" vflex="1">
+        <window width="450px" apply="org.zkoss.bind.BindComposer"
+                viewModel="@id('vm') @init('com.imotiontech.presentation.viewmodel.LoginViewModel')">
+            <grid>
+                <columns>
+                    <column hflex="min"/>
+                    <column hflex="1"/>
+                </columns>
+                <rows>
+                    <row>Account Name : <textbox id="name" value="@bind(vm.account)"/></row>
+                    <row>Password : <textbox id="pwd" type="password" value="@bind(vm.password)"/></row>
+                    <row><cell colspan="2" align="center"><button label="Submit" onClick="@command('login')"/></cell></row>
+                </rows>
+            </grid>
+        </window>
+    </hbox>
+</zk>

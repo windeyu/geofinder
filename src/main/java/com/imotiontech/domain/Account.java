@@ -1,14 +1,14 @@
 package com.imotiontech.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Account {
 
     @OneToMany(mappedBy = "account")
-    private Set<Device> devices = new HashSet<>();
+    private List<Device> devices = new LinkedList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,7 @@ public class Account {
         return enabled;
     }
 
-    public Set<Device> getDevices() {
+    public List<Device> getDevices() {
         return devices;
     }
 }

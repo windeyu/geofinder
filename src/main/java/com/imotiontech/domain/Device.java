@@ -3,14 +3,14 @@ package com.imotiontech.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Device {
 
     @OneToMany(mappedBy = "device")
-    private Set<Location> locations = new HashSet<>();
+    private List<Location> locations = new LinkedList<>();
 
     @JsonIgnore
     @ManyToOne
@@ -37,8 +37,15 @@ public class Device {
         return name;
     }
 
-    public Set<Location> getLocations() {
+    public List<Location> getLocations() {
         return locations;
+    }
+
+    public Location getMostRecentLocation() {
+        if (!locations.isEmpty()) {
+            return locations.iterator().next();
+        }
+        return null;
     }
 
     @Override

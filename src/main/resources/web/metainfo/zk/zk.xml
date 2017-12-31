@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <config-name>zk-spring-boot</config-name>
+    <client-config>
+        <debug-js>true</debug-js>
+    </client-config>
+
+    <!--<library-property>-->
+    <!--<name>org.zkoss.bind.DebuggerFactory.enable</name>-->
+    <!--<value>true</value>-->
+    <!--</library-property>-->
+
+    <!--https://www.zkoss.org/wiki/ZK_Configuration_Reference/zk.xml/The_Library_Properties/org.zkoss.zk.WPD.cache-->
+    <!--<library-property>
+        <name>org.zkoss.zk.WPD.cache</name>
+        <value>false</value>
+    </library-property>-->
+
+    <!-- https://www.zkoss.org/wiki/ZK_Configuration_Reference/zk.xml/The_Library_Properties/org.zkoss.zk.WCS.cache -->
+    <!--<library-property>
+        <name>org.zkoss.zk.WCS.cache</name>
+        <value>false</value>
+    </library-property>-->
+
+    <!--https://www.zkoss.org/wiki/ZK_Configuration_Reference/zk.xml/The_Library_Properties/org.zkoss.web.classWebResource.cache-->
+    <library-property>
+        <name>org.zkoss.web.classWebResource.cache</name>
+        <value>false</value>
+    </library-property>
+
+</zk>

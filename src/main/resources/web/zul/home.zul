@@ -1,0 +1,57 @@
+<?page title="Home" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <tabbox id="tb" hflex="1" vflex="1" orient="left">
+        <tabs id="tabs" width="100px">
+            <tab id="A" label="Devices" />
+            <tab id="C" label="Settings" />
+        </tabs>
+        <tabpanels>
+            <tabpanel>
+                <window border="normal" title="My Devices" apply="org.zkoss.bind.BindComposer"
+                        viewModel="@id('deviceVm') @init('com.imotiontech.presentation.viewmodel.DeviceListViewModel')">
+                    <listbox model="@bind(deviceVm.deviceList)" emptyMessage="No device found">
+                        <listhead>
+                            <listheader label="Name" hflex="min"/>
+                            <listheader label="Most Recent Location"/>
+                            <listheader label="Operations" hflex="min"/>
+                        </listhead>
+                        <template name="model">  <!-- each = Device -->
+                            <listitem>
+                                <listcell label="@bind(each.name)"/>
+                                <listcell label="@bind(each.mostRecentLocation)"/>
+                                <listcell>
+                                    <button label="All History" onClick="@command('showHistory', device=each)"/>
+                                </listcell>
+                            </listitem>
+                        </template>
+                    </listbox>
+                    <groupbox visible="@bind(deviceVm.isHistoryVisible)" closable="false">
+                        <caption onClick="@command('closeHistory')">
+                            <label value="History"/>
+                            <label value="[X]"/>
+                        </caption>
+                        <listbox model="@bind(deviceVm.historyList)" emptyMessage="No history found">
+                            <listhead>
+                                <listheader label="Date"/>
+                                <listheader label="Longitude"/>
+                                <listheader label="Latitude"/>
+                            </listhead>
+                            <template name="model">  <!-- each = Location -->
+                                <listitem>
+                                    <listcell label="@bind(each.timestamp)"/>
+                                    <listcell label="@bind(each.longitude)"/>
+                                    <listcell label="@bind(each.latitude)"/>
+                                </listitem>
+                            </template>
+                        </listbox>
+                    </groupbox>
+                </window>
+            </tabpanel>
+            <tabpanel>
+                <window border="normal" title="My Settings">
+                    Hi
+                </window>
+            </tabpanel>
+        </tabpanels>
+    </tabbox>
+</zk>
