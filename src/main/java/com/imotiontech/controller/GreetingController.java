@@ -3,6 +3,8 @@ package com.imotiontech.controller;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.imotiontech.Greeting;
+import com.imotiontech.repository.DeviceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,6 +18,9 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
     private Greeting _currentGreeting = new Greeting();
 
+    @Autowired
+    DeviceRepository deviceRepository;
+
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
 //        return new Greeting(counter.incrementAndGet(),
@@ -26,6 +31,7 @@ public class GreetingController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addGreeting(@RequestBody Greeting inGreeting) {
         _currentGreeting = inGreeting;
+        System.out.println("addGreeting: " + deviceRepository);
         return _currentGreeting.toString();
     }
 }

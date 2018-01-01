@@ -1,27 +1,43 @@
 package com.imotiontech;
 
+/**
+ * Created by yued on 12/31/2017.
+ */
+
 public class Greeting {
 
-    private long id;
-    private String content;
+    private long deviceId;
+    private long time;
+    private double longitude;
+    private double latitude;
 
-    public Greeting(long id, String content) {
-        this.id = id;
-        this.content = content;
+    public Greeting(long deviceId, long time, double longitude, double latitude) {
+        this.deviceId = deviceId;
+        this.time = time;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     // default constructor is need for http POST
     public Greeting() {}
 
-    public long getId() {
-        return id;
+    public long getDeviceId() {
+        return deviceId;
     }
 
-    public String getContent() {
-        return content;
+    public long getTime() {
+        return time;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public String toString() {
-        return id + ", " + content;
+        return time + ": " + longitude + "," + latitude;
     }
 }
