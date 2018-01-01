@@ -46,7 +46,7 @@ public class DeviceListViewModel {
      */
     public List<Location> getHistoryList() {
         if (selectedDevice != null) {
-            return selectedDevice.getLocations();
+            return locationRepository.findByDeviceName(selectedDevice.getName()); // get latest from db
         }
         return null;
     }
