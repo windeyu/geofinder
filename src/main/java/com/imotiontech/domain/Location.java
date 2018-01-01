@@ -13,7 +13,9 @@ public class Location {
     private Device device;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_generator")
+    @SequenceGenerator(name="location_generator", sequenceName = "location_seq", allocationSize=50)
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
     private Timestamp timestamp;
