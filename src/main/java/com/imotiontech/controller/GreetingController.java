@@ -32,6 +32,6 @@ public class GreetingController {
     public String addGreeting(@RequestBody Greeting inGreeting) {
         _currentGreeting = inGreeting;
         System.out.println("addGreeting: " + deviceRepository + ", " + inGreeting);
-        return _currentGreeting.toString();
+        return "{\"status\":\"OK\"}";
     }
 }
