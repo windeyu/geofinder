@@ -43,13 +43,13 @@ public class GreetingController {
         Optional<Device> deviceOptional = deviceRepository.findById(inGreeting.getDeviceId());
         if (deviceOptional.isPresent()) {
             Device device = deviceOptional.get();
-            Location newLocation = locationRepository.save(
-                    new Location(
-                            device,
-                            new Timestamp(inGreeting.getTime()),
-                            String.valueOf(inGreeting.getLongitude()),
-                            String.valueOf(inGreeting.getLatitude())));
-            System.out.println("Saved new location: " + newLocation);
+            device.getLocations().add(new Location(
+                    device,
+                    new Timestamp(inGreeting.getTime()),
+                    String.valueOf(inGreeting.getLongitude()),
+                    String.valueOf(inGreeting.getLatitude())));
+            Device saved = deviceRepository.save(device);
+            System.out.println("Saved: " + saved);
         } else {
             System.out.println("Error not found id: " + inGreeting.getDeviceId());
         }
