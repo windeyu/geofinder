@@ -1,9 +1,14 @@
 package com.imotiontech.controller;
 
+import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.imotiontech.Greeting;
+import com.imotiontech.domain.Device;
+import com.imotiontech.domain.Location;
 import com.imotiontech.repository.DeviceRepository;
+import com.imotiontech.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +26,9 @@ public class GreetingController {
     @Autowired
     DeviceRepository deviceRepository;
 
+    @Autowired
+    LocationRepository locationRepository;
+
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
 //        return new Greeting(counter.incrementAndGet(),
@@ -31,7 +39,20 @@ public class GreetingController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addGreeting(@RequestBody Greeting inGreeting) {
         _currentGreeting = inGreeting;
-        System.out.println("addGreeting: " + deviceRepository + ", " + inGreeting);
-        return "{\"status\":\"OK\"}";
+        System.out.println("addGreeting: " + inGreeting);
+        Optional<Device> deviceOptional = deviceRepository.findById(inGreeting.getDeviceId());
+        if (deviceOptional.isPresent()) {
+            Device device = deviceOptional.get();
+            Location newLocation = locationRepository.save(
+                    new Location(
+                            device,
+                            new Timestamp(inGreeting.getTime()),
+                            String.valueOf(inGreeting.getLongitude()),
+                            String.valueOf(inGreeting.getLatitude())));
+            System.out.println("Saved new location: " + newLocation);
+        } else {
+            System.out.println("Error not found id: " + inGreeting.getDeviceId());
+        }
+        return "";
     }
 }

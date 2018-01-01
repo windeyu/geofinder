@@ -10,4 +10,6 @@ public interface DeviceRepository extends CrudRepository<Device, Long> {
     Iterable<Device> findByNameIgnoringCase(String deviceName);
 
     Optional<Device> findByName(String deviceName);
+
+    Optional<Device> findById(long deviceId);
 }
