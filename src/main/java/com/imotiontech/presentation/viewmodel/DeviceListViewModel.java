@@ -12,6 +12,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class DeviceListViewModel {
     //wire spring beans
     @WireVariable("accountRepository")
     AccountRepository accountRepository;
-    @WireVariable("LocationRepository")
+    @WireVariable("locationRepository")
     LocationRepository locationRepository;
 
     public List<Device> getDeviceList() {
@@ -46,8 +47,7 @@ public class DeviceListViewModel {
      */
     public List<Location> getHistoryList() {
         if (selectedDevice != null) {
-            //Collection col = locationRepository.findByDeviceName(selectedDevice.getName()); // get latest from db
-            return selectedDevice.getLocations();
+            return locationRepository.findByDeviceName(selectedDevice.getName()); // get latest from db
         }
         return null;
     }

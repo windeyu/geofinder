@@ -30,13 +30,13 @@ public class Application {
 
     @Bean
     public CommandLineRunner exampleQuery(DeviceRepository repository) {
-        return args -> repository.findByNameIgnoringCase("mydevice2")
+        return args -> repository.findByNameIgnoringCase("IPhone 7")
                 .forEach(System.err::println);
     }
 
     @Bean
     public CommandLineRunner exampleQuery2(LocationRepository repository) {
-        return args -> repository.findByDeviceName("MyDevice2")
+        return args -> repository.findByDeviceName("iPhone 7")
                 .forEach(System.err::println);
     }
 
