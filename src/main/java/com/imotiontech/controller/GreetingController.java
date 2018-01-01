@@ -31,7 +31,7 @@ public class GreetingController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addGreeting(@RequestBody Greeting inGreeting) {
         _currentGreeting = inGreeting;
-        System.out.println("addGreeting: " + deviceRepository);
+        System.out.println("addGreeting: " + deviceRepository + ", " + inGreeting);
         return _currentGreeting.toString();
     }
 }
