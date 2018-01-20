@@ -2,6 +2,7 @@
     <hbox align="center" pack="center" hflex="1" vflex="1">
         <window width="450px" apply="org.zkoss.bind.BindComposer"
                 viewModel="@id('vm') @init('com.imotiontech.presentation.viewmodel.LoginViewModel')">
+            Hello!
             <grid>
                 <columns>
                     <column hflex="min"/>
